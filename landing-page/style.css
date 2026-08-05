@@ -36,3 +36,28 @@ body {
 .btn:hover {
     background-color: #0056b3;
 }
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+nav {
+    display: flex;
+    gap: 30px;
+}
+nav a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 600;
+}
+nav a:hover {
+    color: #0077ff;
+}
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003366;
+}
