@@ -1,0 +1,444 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f7fb;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003366;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #0077ff;
+}
+
+#hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+#hero h1 {
+    font-size: 48px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+#hero h2 {
+    font-size: 26px;
+    color: #555555;
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+#hero p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    color: #555555;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #0077ff;
+    color: #ffffff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 40px;
+}
+
+.single-course-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.course-card {
+    background-color: #ffffff;
+    border: 1px solid #e1e8f0;
+    border-radius: 12px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.course-card.featured {
+    border: 2px solid #0077ff;
+}
+
+.badge-popular {
+    background-color: #0077ff;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    display: inline-block;
+    align-self: flex-start;
+    text-transform: uppercase;
+}
+
+.course-card h3 {
+    font-size: 26px;
+    color: #003366;
+    margin-bottom: 12px;
+}
+
+.overview {
+    color: #555555;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.course-details {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.course-details > li {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.course-details ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.course-details ul li {
+    margin-bottom: 8px;
+    color: #555555;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+}
+
+/* ==========================================
+   Curriculum Tabs Styling
+========================================== */
+.curriculum-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    border: 2px solid #e1e8f0;
+    background-color: #ffffff;
+    color: #003366;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.tab-btn:hover {
+    border-color: #0077ff;
+    color: #0077ff;
+}
+
+.tab-btn.active {
+    background-color: #0077ff;
+    color: #ffffff;
+    border-color: #0077ff;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ==========================================
+   Accordion Styling
+========================================== */
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.accordion-item {
+    background-color: #ffffff;
+    border: 1px solid #e1e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s ease;
+}
+
+.accordion-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 24px;
+    background-color: #f8fafc;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #003366;
+    transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+    background-color: #f0f7ff;
+}
+
+.accordion-item.open .accordion-header {
+    background-color: #e8f2ff;
+}
+
+.module-number {
+    display: inline-block;
+    background-color: #003366;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.module-title {
+    flex: 1;
+    text-align: left;
+}
+
+.accordion-toggle {
+    font-size: 24px;
+    color: #0077ff;
+    margin-left: 15px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.accordion-item.open .accordion-toggle {
+    transform: rotate(45deg);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 24px;
+}
+
+.accordion-item.open .accordion-body {
+    max-height: 1000px;
+    padding: 0 24px 20px 24px;
+}
+
+.accordion-body p {
+    margin-bottom: 12px;
+    color: #555555;
+    line-height: 1.5;
+}
+
+.accordion-body ul {
+    margin-left: 20px;
+    padding: 0;
+    list-style-type: disc;
+}
+
+.accordion-body ul li {
+    color: #555555;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   Syllabus Comparison Section Styling
+========================================== */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid #e1e8f0;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.comparison-table th, 
+.comparison-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid #e1e8f0;
+    font-size: 15px;
+}
+
+.comparison-table th {
+    background-color: #f8fafc;
+    color: #003366;
+    font-weight: bold;
+}
+
+.comparison-table th.highlight-col,
+.comparison-table td.highlight-col {
+    background-color: #f0f7ff;
+    font-weight: 600;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.check {
+    color: #28a745;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.cross {
+    color: #dc3545;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.neutral {
+    color: #ffc107;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #ffffff;
+    color: #777;
+    border-top: 1px solid #e1e8f0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    nav {
+        gap: 15px;
+        font-size: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #hero h1 {
+        font-size: 32px;
+    }
+
+    .comparison-table th, 
+    .comparison-table td {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .accordion-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .module-number {
+        margin-right: 10px;
+    }
+
+    .curriculum-tabs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tab-btn {
+        width: 100%;
+    }
+}
