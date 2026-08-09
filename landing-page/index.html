@@ -1,63 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Edinsured Live Reinsurance Training</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edinsured Live Reinsurance Training</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header>
-<div class="logo">
-        Edinsured
-    </div>
-
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Courses</a>
-        <a href="#">Programs</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </nav>
+        <div class="logo">Edinsured</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#syllabus">Syllabus</a>
+            <a href="#syllabus-comparison">Comparison</a>
+            <a href="#testimonials">Testimonial</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
 
     <main>
-<!-- Hero Section -->
+        <!-- Hero Section -->
         <section id="hero">
+            <video class="hero-video" autoplay loop muted playsinline>
+                <source src="https://res.cloudinary.com/nr9kdftt/video/upload/v1786195511/Edinsured_Logo_vqvf2d.mp4" type="video/mp4">
+            </video>
+            <div class="hero-content">
                 <h1>Welcome to Edinsured Live</h1>
-<h2>9-Month One-to-One Live Reinsurance Training</h2>
-<p>Learn Reinsurance directly from an industry professional with nearly
-        two decades of Insurance & Reinsurance experience. Gain practical
-        knowledge through personalised live sessions designed to prepare you
-        for real-world challenges.</p>
-        <a href="#" class="btn">Enroll Now</a>
-        </section>
-<!-- Cources Section    -->
-        <section>
-
-        </section>
-<!-- Comparison Section -->
-        <section>
-
-        </section>
-<!-- Enrollment Section -->
-        <section>
-
-        </section>
-<!-- Testimonials Section -->
-        <section>
-
-        </section>
-<!-- About Me Section -->
-        <section>
-
+                <div class="hero-subtag">A specialized live learning initiative by edinsured.com</div>
+                <h2>6-Month One-to-One Live Reinsurance Training</h2>
+                <p>Learn Reinsurance directly from an industry professional with nearly two decades of Insurance &amp; Reinsurance experience. Gain practical knowledge through personalised live sessions.</p>
+                <a href="#contact" class="btn">Enroll Now</a>
+            </div>
         </section>
 
+        <!-- Executive Program / Flagship Section -->
+        <section id="courses" class="container">
+            <h2 class="section-title">Our Flagship Program</h2>
+            
+            <div class="single-course-container">
+                <div class="course-card featured">
+                    <span class="badge badge-popular">Beginner to Intermediate &amp; Advanced</span>
+                    <h3>Executive Program - Master in Reinsurance</h3>
+                    <p class="overview">An all-inclusive, end-to-end 1-on-1 mentorship program designed to take you from core reinsurance principles through advanced treaty structuring and quantitative analytics.</p>
+                    
+                    <ul class="course-details">
+                        <li><strong>Duration:</strong> 6 Months (Live 1-on-1 Sessions)</li>
+                        <li><strong>Who Should Join:</strong> College graduates, insurance professionals, analysts, brokers, and underwriters seeking complete mastery in Reinsurance.</li>
+                        <li><strong>Key Topics Covered:</strong>
+                            <ul>
+                                <li><strong>Reinsurance Foundations:</strong> Risk Transfer Principles, Proportional &amp; Non-Proportional Reinsurance, Treaty Structuring, Facultative Reinsurance</li>
+                                <li><strong>Treaty Design &amp; Analytics:</strong> Risk Retention, XL Layering, Portfolio Structuring, PML, Pricing, Quantitative Testing, Monte Carlo &amp; Stress Testing</li>
+                                <li><strong>Advanced Reinsurance Strategy:</strong> Capital Efficiency, Regulatory &amp; Rating Agency Requirements, Global Compliance, Emerging Risks, Program Optimization</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="card-footer">
+                        <div class="price">USD 150 / INR 15,000</div>
+                        <a href="#contact" class="btn">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Full Curriculum Section -->
+        <section id="syllabus" class="container">
+            <h2 class="section-title">Complete Master Curriculum</h2>
+            <p class="section-subtitle">22 Comprehensive Modules: 11 Undergraduate (UG) + 11 Postgraduate (PG)</p>
+
+            <div class="curriculum-tabs">
+                <button class="tab-btn active" data-tab="ug">Undergraduate (UG) Program</button>
+                <button class="tab-btn" data-tab="pg">Postgraduate (PG) Program</button>
+            </div>
+
+            <!-- UG Program Accordion -->
+            <div id="ug" class="tab-content active">
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 1</span>
+                            <span class="module-title">Where Reinsurance Begins: The Insurer's Problem</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Why does a primary insurer need to share risk before it ever signs a policy?</strong></p>
+                            <ul>
+                                <li>The Concept and Rationale of Reinsurance</li>
+                                <li>How Reinsurance Differs from Insurance</li>
+                                <li>Core Risk-Transfer Functions: Capacity, Stability, Catastrophe Protection</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 2</span>
+                            <span class="module-title">Sharing the Risk Proportionally: Quota Share and Surplus</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>The first decision a cedant makes: how much of each risk to keep, and how much to pass on.</strong></p>
+                            <ul>
+                                <li>Quota Share Treaties</li>
+                                <li>Surplus Treaties</li>
+                                <li>Facultative-Obligatory Arrangements</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 3</span>
+                            <span class="module-title">Protecting Against the Big Loss: Excess of Loss Covers</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Once proportional sharing isn't enough, how does an insurer cap its exposure to a single event or a bad year?</strong></p>
+                            <ul>
+                                <li>Per Risk Excess of Loss</li>
+                                <li>Per Event Excess of Loss</li>
+                                <li>Stop Loss Excess of Loss</li>
+                                <li>Aggregate Excess of Loss</li>
+                                <li>Attachment Points and Layering</li>
+                                <li>Pricing the Layer: Non-Proportional Premiums</li>
+                                <li>Adjusting for Inflation: Stability and Indexation Clauses</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 4</span>
+                            <span class="module-title">Designing the Full Program: Combining Treaties</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>In practice, no insurer relies on one structure. How are proportional and non-proportional covers layered together?</strong></p>
+                            <ul>
+                                <li>Quota Share Operating after Surplus</li>
+                                <li>Per Risk XL after Surplus</li>
+                                <li>Per Risk XL combined with Quota Share</li>
+                                <li>Per Risk XL combined with Catastrophe XL</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 5</span>
+                            <span class="module-title">When the Treaty Isn't Enough: Facultative Reinsurance</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>What happens when a single risk falls outside the treaty's automatic terms, and has to be negotiated one-by-one?</strong></p>
+                            <ul>
+                                <li>Proportional Facultative Placements</li>
+                                <li>Non-Proportional Facultative Placements</li>
+                                <li>The Mechanics of Placing a Facultative Risk</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 6</span>
+                            <span class="module-title">Measuring the Worst Case: PML and Property Cessions</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Before any of this works, someone has to estimate how bad the loss could actually get.</strong></p>
+                            <ul>
+                                <li>Probable Maximum Loss (PML) and Cession Decisions</li>
+                                <li>Premium Allocation under Surplus Treaties</li>
+                                <li>What Happens When the PML Estimate Is Wrong</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 7</span>
+                            <span class="module-title">Pricing the Risk: From Experience to Exposure</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>How does a reinsurer decide what to charge for taking on this risk?</strong></p>
+                            <ul>
+                                <li>Burning Cost / Experience Rating</li>
+                                <li>Exposure Rating</li>
+                                <li>Pricing Catastrophe Excess of Loss</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 8</span>
+                            <span class="module-title">Accounting &amp; Financial Operations in Reinsurance</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Understanding premium calculations, commissions, accounts processing, and financial statements.</strong></p>
+                            <ul>
+                                <li>Proportional &amp; Non-Proportional Accounts</li>
+                                <li>Portfolio Transfers and Premium Reserves</li>
+                                <li>Reinsurance Loss Reserves &amp; Cash Calls</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 9</span>
+                            <span class="module-title">Reinsurance Claims &amp; Management</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>How losses are reported, investigated, settled, and recovered under reinsurance agreements.</strong></p>
+                            <ul>
+                                <li>Claims Notification Clauses and Co-operation</li>
+                                <li>Cut-Through Clauses &amp; Special Provisions</li>
+                                <li>Claims Handling Procedures in Treaties</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 10</span>
+                            <span class="module-title">Legal Principles &amp; Contract Wording</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Key legal doctrines that govern relationships between primary insurers and reinsurers.</strong></p>
+                            <ul>
+                                <li>Utmost Good Faith &amp; Follow the Fortunes</li>
+                                <li>Standard Contractual Clauses &amp; Exclusions</li>
+                                <li>Dispute Resolution: Arbitration vs Litigation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 11</span>
+                            <span class="module-title">Global Reinsurance Markets &amp; Broking</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Overview of key global hubs, reinsurance centers, and placement processes.</strong></p>
+                            <ul>
+                                <li>Lloyd’s of London, European, &amp; Offshore Markets</li>
+                                <li>The Role of Intermediaries and Reinsurance Brokers</li>
+                                <li>Market Cycles: Hard vs Soft Markets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PG Program Accordion -->
+            <div id="pg" class="tab-content">
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 1</span>
+                            <span class="module-title">Advanced Quantitative Analytics &amp; Modeling</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Mathematical modeling techniques for assessing non-linear exposures.</strong></p>
+                            <ul>
+                                <li>Frequency and Severity Distributions</li>
+                                <li>Monte Carlo Simulations in Reinsurance</li>
+                                <li>Loss Aggregation and Extreme Value Theory</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 2</span>
+                            <span class="module-title">Catastrophe Modeling &amp; Climate Risk</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Analyzing natural hazards and long-term environmental trends.</strong></p>
+                            <ul>
+                                <li>Catastrophe Model Structure (AIR, RMS)</li>
+                                <li>AEP and OEP Loss Curves</li>
+                                <li>Incorporating Climate Change into Pricing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 3</span>
+                            <span class="module-title">Capital Management &amp; Solvency II</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>How reinsurance impacts regulatory capital requirements.</strong></p>
+                            <ul>
+                                <li>Economic Capital Models &amp; SCR Credit</li>
+                                <li>Solvency II &amp; Rating Agency Capital Models</li>
+                                <li>Capital Relief via Finite &amp; Structured Reinsurance</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 4</span>
+                            <span class="module-title">Structured Reinsurance Solutions</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Non-traditional risk transfer and tailored capital relief structures.</strong></p>
+                            <ul>
+                                <li>Loss Portfolio Transfers (LPT)</li>
+                                <li>Adverse Development Cover (ADC)</li>
+                                <li>Prospective Multi-Year Structured Treaties</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 5</span>
+                            <span class="module-title">Insurance-Linked Securities (ILS) &amp; Alt Capital</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Bridging insurance risks directly with capital market investors.</strong></p>
+                            <ul>
+                                <li>Catastrophe Bonds &amp; SPVs</li>
+                                <li>Sidecars and Collateralized Reinsurance</li>
+                                <li>Parametric Triggers vs Indemnity Triggers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 6</span>
+                            <span class="module-title">Enterprise Risk Management (ERM) for Reinsurers</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Structuring holistic risk limits across an entire underwriting portfolio.</strong></p>
+                            <ul>
+                                <li>Risk Appetite Frameworks &amp; Limits</li>
+                                <li>Realistic Disaster Scenarios (RDS)</li>
+                                <li>Accumulation Control across Lines of Business</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 7</span>
+                            <span class="module-title">Portfolio Optimization &amp; Underwriting Strategy</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Balancing portfolio yield, volatility, and underwriting margins.</strong></p>
+                            <ul>
+                                <li>Marginal Capital Allocation</li>
+                                <li>Combined Ratio Targets &amp; ROE Optimization</li>
+                                <li>Cross-Line Diversification Strategies</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 8</span>
+                            <span class="module-title">Specialty &amp; Casualty Treaty Underwriting</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Complex underwriting for non-property lines and long-tail liabilities.</strong></p>
+                            <ul>
+                                <li>Casualty XL &amp; Clash Cover Structuring</li>
+                                <li>Cyber, Marine, Aviation, &amp; Energy Reinsurance</li>
+                                <li>Social Inflation &amp; Long-Tail Loss Reserving</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 9</span>
+                            <span class="module-title">Retrocession Markets &amp; Strategy</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>How reinsurers purchase protection for their own risk portfolios.</strong></p>
+                            <ul>
+                                <li>Retrocession Structures (Quota Share vs Excess of Loss)</li>
+                                <li>ILW (Industry Loss Warranties)</li>
+                                <li>Managing Retrocession Counterparty Credit Risk</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 10</span>
+                            <span class="module-title">Regulatory Frameworks &amp; Global Tax Strategy</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Cross-border regulatory mechanics and international compliance.</strong></p>
+                            <ul>
+                                <li>Cross-Border Reinsurance Regulation (US, EU, Asia)</li>
+                                <li>Base Erosion &amp; Profit Shifting (BEPS) Impact</li>
+                                <li>Collateral Requirements for Unlicensed Reinsurers</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span class="module-number">Module 11</span>
+                            <span class="module-title">Executive Leadership &amp; Treaty Negotiation Lab</span>
+                            <span class="accordion-toggle">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <p><strong>Simulated real-world negotiation and executive strategy development.</strong></p>
+                            <ul>
+                                <li>Live Treaty Pricing &amp; Placement Simulations</li>
+                                <li>Broker-Reinsurer Relationship Management</li>
+                                <li>Executive Mentorship Capstone Project</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Syllabus Comparison Section -->
+        <section id="syllabus-comparison" class="container">
+            <h2 class="section-title">Program Comparison</h2>
+            <p class="section-subtitle">How our live training compares to standard market courses</p>
+            <div class="info-card">
+                <p>Personalized 1-on-1 mentorship ensures tailored speed and hands-on real-world treaty pricing case studies.</p>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="container">
+            <h2 class="section-title">What Our Alumni Say</h2>
+            <p class="section-subtitle">Real recommendations verified from LinkedIn</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">JS</div>
+                        <div class="author-info">
+                            <h4>John Smith</h4>
+                            <p>Reinsurance Analyst at Global Re</p>
+                        </div>
+                        <a href="#" target="_blank" rel="noopener" class="linkedin-icon" title="View on LinkedIn">in</a>
+                    </div>
+                    <p class="testimonial-text">"The 1-on-1 sessions were transformative. Learning directly from an industry veteran gave me practical insights into treaty pricing that standard courses simply don't cover."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="avatar">AR</div>
+                        <div class="author-info">
+                            <h4>Ananya Rao</h4>
+                            <p>Underwriting Associate</p>
+                        </div>
+                        <a href="#" target="_blank" rel="noopener" class="linkedin-icon" title="View on LinkedIn">in</a>
+                    </div>
+                    <p class="testimonial-text">"Edinsured helped me transition smoothly into reinsurance underwriting. The personalized pace and real-world case studies made complex structures feel intuitive."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="container">
+            <h2 class="section-title">About Edinsured Live</h2>
+            <div class="info-card">
+                <p>Edinsured Live offers intensive 1-on-1 training conducted by professionals with nearly two decades of insurance and reinsurance industry experience.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="info-card">
+                <p>Ready to master reinsurance? Reach out to schedule your preliminary consultation.</p>
+                <br>
+                <a href="mailto:info@edinsured.com" class="btn">Email Us</a>
+            </div>
+        </section>
     </main>
 
-    <footer>
-
-    </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
