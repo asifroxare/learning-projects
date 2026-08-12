@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EdInsured Treaty Lab - Monte Carlo Reinsurance Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Optional lightweight Chart.js from CDN for dynamic rendering of actual returned data -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="brand">
+        <h1>EdInsured Treaty Lab</h1>
+        <p class="subtitle">Monte Carlo Reinsurance Simulator</p>
+      </div>
+      <div class="status-badge" id="api-status">
+        <span class="status-dot"></span> <span id="status-text">Ready</span>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT GRID -->
+    <main class="dashboard-grid">
+      <!-- INPUT PANEL -->
+      <section class="panel input-panel">
+        <h2>Simulation Parameters</h2>
+        <form id="simulation-form">
+          <div class="form-group">
+            <label for="policies">Policies</label>
+            <input type="number" id="policies" value="10000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="claim_frequency">Claim Frequency</label>
+            <input type="number" id="claim_frequency" step="0.001" value="0.05" required />
+          </div>
+
+          <div class="form-group">
+            <label for="average_claim">Average Claim ($)</label>
+            <input type="number" id="average_claim" value="100000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="attachment">Attachment ($)</label>
+            <input type="number" id="attachment" value="1000000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="limit">Limit ($)</label>
+            <input type="number" id="limit" value="5000000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="simulations">Simulations</label>
+            <input type="number" id="simulations" value="10000" required />
+          </div>
+
+          <button type="submit" id="run-btn" class="btn-primary">
+            <span id="btn-text">Run Simulation</span>
+            <span id="btn-loader" class="spinner hidden"></span>
+          </button>
+        </form>
+
+        <div id="error-banner" class="error-banner hidden"></div>
+      </section>
+
+      <!-- RESULTS DISPLAY -->
+      <section class="results-area">
+        <!-- METRICS CARDS -->
+        <div class="cards-grid">
+          <div class="card">
+            <span class="card-title">Expected Claims</span>
+            <div class="card-value" id="card-expected-claims">-</div>
+            <span class="card-sub" id="sub-claims-theoretical">Theoretical: -</span>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Expected Annual Loss</span>
+            <div class="card-value" id="card-expected-loss">-</div>
+            <span class="card-sub" id="sub-loss-theoretical">Theoretical: -</span>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Average Claims</span>
+            <div class="card-value" id="card-average-claims">-</div>
+            <span class="card-sub">Simulated Mean</span>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Attaching Years</span>
+            <div class="card-value" id="card-attaching-years">-</div>
+            <span class="card-sub" id="card-attaching-pct">Pct of Years: -</span>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Average Attaching Claims</span>
+            <div class="card-value" id="card-avg-attaching-claims">-</div>
+            <span class="card-sub">Conditional Avg</span>
+          </div>
+
+          <div class="card">
+            <span class="card-title">Layer Exhaustion Years</span>
+            <div class="card-value" id="card-exhaustion-years">-</div>
+            <span class="card-sub" id="card-exhaustion-pct">Pct of Years: -</span>
+          </div>
+        </div>
+
+        <!-- CONFIGURATION & TREATY STRUCTURE SUMMARY -->
+        <div class="summary-section">
+          <div class="panel">
+            <h3>Treaty Structure & Configuration</h3>
+            <div class="config-details" id="config-summary">
+              <p class="placeholder-text">Run simulation to inspect treaty structure.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DYNAMIC ANALYTICS SECTION -->
+        <div class="panel">
+          <h3>Analytics & Risk Metrics</h3>
+          <div id="analytics-container" class="analytics-grid">
+            <p class="placeholder-text">Run simulation to view analytics data.</p>
+          </div>
+        </div>
+
+        <!-- CHART (GENERATED FROM REAL DATA) -->
+        <div class="panel">
+          <h3>Loss Distribution Sample (First 100 Years)</h3>
+          <div class="chart-wrapper">
+            <canvas id="lossChart"></canvas>
+          </div>
+        </div>
+
+        <!-- YEARS SAMPLE TABLE -->
+        <div class="panel">
+          <h3>Simulation Sample Details (First 100 Years)</h3>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Claim Count</th>
+                  <th>Gross Loss</th>
+                  <th>Reinsurance Recovery</th>
+                  <th>Net Loss</th>
+                  <th>Attaching Claims</th>
+                  <th>Exhausting Claims</th>
+                </tr>
+              </thead>
+              <tbody id="years-table-body">
+                <tr>
+                  <td colspan="7" class="placeholder-text text-center">
+                    No simulation run yet. Click "Run Simulation" above.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
