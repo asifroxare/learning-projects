@@ -372,11 +372,13 @@ if __name__ == "__main__":
     # --------------------------------------------------------
 
     analytics = analyze_simulation(
-        gross_losses,
-        recoveries,
-        net_losses,
-        exhausting_claims
-    )
+    gross_losses,
+    recoveries,
+    net_losses,
+    exhausting_claims,
+    attaching_claims,
+    LIMIT
+)
 
     # ========================================================
     # RESULTS

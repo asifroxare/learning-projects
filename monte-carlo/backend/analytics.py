@@ -68,6 +68,11 @@ def calculate_var(values, confidence_level):
         returns the 99% VaR.
     """
 
+    if not 0 < confidence_level < 1:
+        raise ValueError(
+            "confidence_level must be between 0 and 1."
+        )
+
     return calculate_percentile(
         values,
         confidence_level * 100
@@ -81,6 +86,13 @@ def calculate_tvar(values, confidence_level):
     TVaR is the average loss at or above
     the selected VaR threshold.
     """
+
+    if not 0 < confidence_level < 1:
+        raise ValueError(
+            "confidence_level must be between 0 and 1."
+        )
+
+    values = np.asarray(values)
 
     var = calculate_var(
         values,
@@ -105,7 +117,16 @@ def calculate_attachment_probability(
     """
     Probability that the reinsurance layer
     attaches in a simulated year.
+
+    A year attaches when recovery > 0.
     """
+
+    recoveries = np.asarray(
+        recoveries
+    )
+
+    if len(recoveries) == 0:
+        return 0.0
 
     attaching_years = np.sum(
         recoveries > 0
@@ -124,9 +145,16 @@ def calculate_exhaustion_probability(
     Probability that at least one claim
     exhausts the layer during a simulated year.
 
-    exhausting_claims should contain the
-    number of exhausting claims for each year.
+    exhausting_claims contains the number
+    of exhausting claims for each year.
     """
+
+    exhausting_claims = np.asarray(
+        exhausting_claims
+    )
+
+    if len(exhausting_claims) == 0:
+        return 0.0
 
     exhausted_years = np.sum(
         exhausting_claims > 0
@@ -138,6 +166,99 @@ def calculate_exhaustion_probability(
     )
 
 
+def calculate_average_attaching_claims(
+    attaching_claims,
+    recoveries
+):
+    """
+    Calculate the average number of attaching
+    claims in years where the treaty actually
+    attaches.
+
+    A year is considered attaching when:
+
+        recovery > 0
+
+    Example:
+
+        attaching_claims = [0, 2, 0, 4, 1, 0]
+        recoveries       = [0, 100, 0, 200, 50, 0]
+
+        Attaching years:
+            2 claims
+            4 claims
+            1 claim
+
+        Average:
+            (2 + 4 + 1) / 3
+            = 2.3333
+    """
+
+    attaching_claims = np.asarray(
+        attaching_claims
+    )
+
+    recoveries = np.asarray(
+        recoveries
+    )
+
+    if len(attaching_claims) != len(recoveries):
+        raise ValueError(
+            "attaching_claims and recoveries "
+            "must have the same length."
+        )
+
+    if len(attaching_claims) == 0:
+        return 0.0
+
+    attaching_years = recoveries > 0
+
+    if not np.any(attaching_years):
+        return 0.0
+
+    return float(
+        np.mean(
+            attaching_claims[
+                attaching_years
+            ]
+        )
+    )
+
+
+def calculate_treaty_utilization(
+    recoveries,
+    limit
+):
+    """
+    Calculate average annual treaty utilization.
+
+    Treaty utilization is:
+
+        average recovery / treaty limit
+
+    Example:
+
+        Average recovery = 150,000
+        Treaty limit     = 1,000,000
+
+        Utilization = 15%
+    """
+
+    if limit <= 0:
+        raise ValueError(
+            "Treaty limit must be greater than zero."
+        )
+
+    recoveries = np.asarray(
+        recoveries
+    )
+
+    return float(
+        np.mean(recoveries)
+        / limit
+    )
+
+
 def calculate_summary_statistics(values):
     """
     Return the core descriptive statistics
@@ -145,20 +266,50 @@ def calculate_summary_statistics(values):
     """
 
     return {
-        "mean": calculate_mean(values),
-        "median": calculate_median(values),
-        "minimum": calculate_minimum(values),
-        "maximum": calculate_maximum(values),
+        "mean":
+            calculate_mean(values),
+
+        "median":
+            calculate_median(values),
+
+        "minimum":
+            calculate_minimum(values),
+
+        "maximum":
+            calculate_maximum(values),
+
         "standard_deviation":
             calculate_standard_deviation(values),
+
         "var_95":
-            calculate_var(values, 0.95),
+            calculate_var(
+                values,
+                0.95
+            ),
+
+        "tvar_95":
+            calculate_tvar(
+                values,
+                0.95
+            ),
+
         "var_99":
-            calculate_var(values, 0.99),
-        "var_995":
-            calculate_var(values, 0.995),
+            calculate_var(
+                values,
+                0.99
+            ),
+
         "tvar_99":
-            calculate_tvar(values, 0.99)
+            calculate_tvar(
+                values,
+                0.99
+            ),
+
+        "var_995":
+            calculate_var(
+                values,
+                0.995
+            ),
     }
 
 
@@ -166,184 +317,77 @@ def analyze_simulation(
     gross_losses,
     recoveries,
     net_losses,
-    exhausting_claims
+    exhausting_claims,
+    attaching_claims,
+    treaty_limit
 ):
     """
-    Produce the main M4 analytics package
+    Produce the complete M4 analytics package
     from Monte Carlo simulation results.
     """
 
     return {
-        "gross": calculate_summary_statistics(
-            gross_losses
-        ),
+        "gross":
+            calculate_summary_statistics(
+                gross_losses
+            ),
 
-        "recovery": calculate_summary_statistics(
-            recoveries
-        ),
+        "recovery":
+            calculate_summary_statistics(
+                recoveries
+            ),
 
-        "net": calculate_summary_statistics(
-            net_losses
-        ),
+        "net":
+            calculate_summary_statistics(
+                net_losses
+            ),
 
         "reinsurance": {
+
             "mean_recovery":
-                calculate_mean(recoveries),
+                calculate_mean(
+                    recoveries
+                ),
 
             "median_recovery":
-                calculate_median(recoveries),
+                calculate_median(
+                    recoveries
+                ),
+
+            "maximum_recovery":
+                calculate_maximum(
+                    recoveries
+                ),
 
             "attachment_probability":
                 calculate_attachment_probability(
                     recoveries
                 ),
 
+            "attaching_years":
+                int(
+                    np.sum(
+                        np.asarray(
+                            recoveries
+                        ) > 0
+                    )
+                ),
+
+            "average_attaching_claims":
+                calculate_average_attaching_claims(
+                    attaching_claims,
+                    recoveries
+                ),
+
+            "treaty_utilization":
+                calculate_treaty_utilization(
+                    recoveries,
+                    treaty_limit
+                ),
+
             "exhaustion_probability":
                 calculate_exhaustion_probability(
                     exhausting_claims
-                )
+                ),
         }
     }
-
-
-# ============================================================
-# TEST
-# ============================================================
-
-if __name__ == "__main__":
-
-    print()
-    print("=" * 60)
-    print("EDINSURED TREATY LAB — ANALYTICS TEST")
-    print("=" * 60)
-
-    # Small artificial dataset for testing
-    test_losses = np.array([
-        10_000_000,
-        20_000_000,
-        30_000_000,
-        40_000_000,
-        50_000_000
-    ])
-
-    test_recoveries = np.array([
-        0,
-        500_000,
-        1_000_000,
-        2_000_000,
-        5_000_000
-    ])
-
-    test_net_losses = (
-        test_losses
-        - test_recoveries
-    )
-
-    test_exhausting_claims = np.array([
-        0,
-        0,
-        1,
-        0,
-        2
-    ])
-
-    results = analyze_simulation(
-        test_losses,
-        test_recoveries,
-        test_net_losses,
-        test_exhausting_claims
-    )
-
-    print()
-    print("--- Gross Loss ---")
-
-    print(
-        "Mean: ₹{:,.2f}".format(
-            results["gross"]["mean"]
-        )
-    )
-
-    print(
-        "Median: ₹{:,.2f}".format(
-            results["gross"]["median"]
-        )
-    )
-
-    print(
-        "95% VaR: ₹{:,.2f}".format(
-            results["gross"]["var_95"]
-        )
-    )
-
-    print(
-        "99% VaR: ₹{:,.2f}".format(
-            results["gross"]["var_99"]
-        )
-    )
-
-    print(
-        "99% TVaR: ₹{:,.2f}".format(
-            results["gross"]["tvar_99"]
-        )
-    )
-
-    print()
-    print("--- Reinsurance ---")
-
-    print(
-        "Mean Recovery: ₹{:,.2f}".format(
-            results["reinsurance"]["mean_recovery"]
-        )
-    )
-
-    print(
-        "Attachment Probability: {:.2%}".format(
-            results["reinsurance"]
-            ["attachment_probability"]
-        )
-    )
-
-    print(
-        "Exhaustion Probability: {:.2%}".format(
-            results["reinsurance"]
-            ["exhaustion_probability"]
-        )
-    )
-
-    print()
-    print("--- Net Loss ---")
-
-    print(
-        "Mean: ₹{:,.2f}".format(
-            results["net"]["mean"]
-        )
-    )
-
-    print(
-        "95% VaR: ₹{:,.2f}".format(
-            results["net"]["var_95"]
-        )
-    )
-
-    print(
-        "99% VaR: ₹{:,.2f}".format(
-            results["net"]["var_99"]
-        )
-    )
-
-    print(
-        "99.5% VaR: ₹{:,.2f}".format(
-            results["net"]["var_995"]
-        )
-    )
-
-    print(
-        "99% TVaR: ₹{:,.2f}".format(
-            results["net"]["tvar_99"]
-        )
-    )
-
-    print()
-    print("=" * 60)
-    print("ANALYTICS TEST COMPLETE")
-    print("=" * 60)

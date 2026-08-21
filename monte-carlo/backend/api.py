@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+import numpy as np
+
 from backend.monte_carlo import run_monte_carlo
 from backend.analytics import analyze_simulation
 
@@ -16,6 +18,12 @@ app = FastAPI(
     description="Monte Carlo Reinsurance Simulator API",
     version="0.1.0"
 )
+
+
+# ============================================================
+# CORS
+# ============================================================
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -109,10 +117,8 @@ def simulate(
     )
 
     # --------------------------------------------------------
-    # EXTRACT ARRAYS
+    # EXTRACT SIMULATION ARRAYS
     # --------------------------------------------------------
-
-    import numpy as np
 
     claim_counts = np.array([
         result["claim_count"]
@@ -145,18 +151,32 @@ def simulate(
     ])
 
     # --------------------------------------------------------
-    # ANALYTICS
+    # M4 ANALYTICS
+    # --------------------------------------------------------
+    #
+    # M4 is the single source of truth for:
+    #
+    # - attachment probability
+    # - exhaustion probability
+    # - average attaching claims
+    # - treaty utilization
+    # - VaR
+    # - TVaR
+    # - gross / recovery / net statistics
+    #
     # --------------------------------------------------------
 
     analytics = analyze_simulation(
         gross_losses,
         recoveries,
         net_losses,
-        exhausting_claims
+        exhausting_claims,
+        attaching_claims,
+        request.limit
     )
 
     # --------------------------------------------------------
-    # ADDITIONAL SIMULATION INFORMATION
+    # THEORETICAL EXPECTATIONS
     # --------------------------------------------------------
 
     expected_claims = (
@@ -170,50 +190,116 @@ def simulate(
     )
 
     # --------------------------------------------------------
+    # SIMULATION VALIDATION
+    # --------------------------------------------------------
+
+    average_claims = float(
+        np.mean(claim_counts)
+    )
+
+    # --------------------------------------------------------
     # RESPONSE
     # --------------------------------------------------------
 
     return {
+
+        # ----------------------------------------------------
+        # CONFIGURATION
+        # ----------------------------------------------------
+
         "configuration": {
-            "simulations": request.simulations,
-            "policies": request.policies,
+
+            "simulations":
+                request.simulations,
+
+            "policies":
+                request.policies,
+
             "claim_frequency":
                 request.claim_frequency,
+
             "average_claim":
                 request.average_claim,
+
             "attachment":
                 request.attachment,
+
             "limit":
                 request.limit,
+
             "treaty_structure":
                 f"{request.limit:,.0f} xs "
                 f"{request.attachment:,.0f} "
                 "Per Risk XL"
         },
 
+        # ----------------------------------------------------
+        # THEORETICAL EXPECTATIONS
+        # ----------------------------------------------------
+
         "theoretical": {
+
             "expected_claims":
                 expected_claims,
+
             "expected_annual_loss":
                 expected_annual_loss
         },
 
+        # ----------------------------------------------------
+        # SIMULATION VALIDATION
+        # ----------------------------------------------------
+
         "simulation": {
+
             "average_claims":
-                float(np.mean(claim_counts)),
+                average_claims,
+
             "attaching_years":
-                int(np.sum(recoveries > 0)),
+                analytics[
+                    "reinsurance"
+                ][
+                    "attaching_years"
+                ],
+
             "average_attaching_claims":
-                float(np.mean(attaching_claims)),
+                analytics[
+                    "reinsurance"
+                ][
+                    "average_attaching_claims"
+                ],
+
             "exhausting_claims":
-                int(np.sum(exhausting_claims)),
+                int(
+                    np.sum(
+                        exhausting_claims
+                    )
+                ),
+
             "layer_exhaustion_years":
-                int(np.sum(
-                    exhausting_claims > 0
-                ))
+                int(
+                    np.sum(
+                        exhausting_claims > 0
+                    )
+                )
         },
 
-        "analytics": analytics,
+        # ----------------------------------------------------
+        # M4 ANALYTICS
+        # ----------------------------------------------------
 
-        "years": results[:100]
+        "analytics":
+            analytics,
+
+        # ----------------------------------------------------
+        # SAMPLE SIMULATION YEARS
+        # ----------------------------------------------------
+        #
+        # Limit the API response to the first 100 years
+        # rather than returning all simulation records.
+        #
+        # ----------------------------------------------------
+
+        "years":
+            results[:100]
     }
